@@ -1,8 +1,6 @@
 <h2>Your cart</h2>
 
-<%= @items.inspect %>
-
-<table class="table tble-striped">
+<table class="table table-striped">
     <thead>
     <tr>
         <th>Name</th>
@@ -11,12 +9,22 @@
     </tr>    
     </thead>
     <tbody>
+    <% total_price = 0 %>
+    <% total_qty = 0 %>
     <% @items.each do |item| %>
-    <tr>
-        <th><%= item[0].title %></th>
-        <th><%= item[0].price %></th>
-        <th><%= item[1]. %></th>
-    </tr>
+      <tr>
+          <th><%= item[0].title %></th>
+          <th><%= item[0].price %></th>
+          <th><%= item[1] %></th>
+      </tr>
+      <% total_price += item[0].price * item[1].to_i%>
+      <% total_qty += item[1].to_i %>
     <% end %>
+    <tr>
+          <th></th>
+          <th>Total: <%= total_price %> Rub</th>
+          <th><%= total_qty %></th>
+      </tr>
+
     </tbody>
 </table>
